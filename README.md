@@ -62,3 +62,4 @@ launchctl unload ~/Library/LaunchAgents/com.local.claudestatusbar.plist
 | Icon shows `--` | Normal at startup — populates within seconds. If it persists, run `claude /login` |
 | 5-hour % never changes | Re-authenticate: `claude /login` |
 | Popover data doesn't update | Check the hook is registered in `settings.json` and `jq` is installed |
+| `launchctl load` fails with "Input/output error" | The plist needs `LimitLoadToSessionType = Aqua` — required for GUI/menu bar apps. Copy the bundled `com.local.claudestatusbar.plist` which already includes it. |
