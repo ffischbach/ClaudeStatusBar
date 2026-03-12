@@ -50,7 +50,7 @@ Copy the bundled LaunchAgent plist to the macOS system folder where login items 
 cp com.local.claudestatusbar.plist ~/Library/LaunchAgents/
 ```
 
-Replace the `YOUR_USERNAME` placeholder with your actual username:
+Replace the `YOUR_USERNAME` placeholder — `$(whoami)` is substituted automatically with your macOS username:
 ```bash
 sed -i '' "s/YOUR_USERNAME/$(whoami)/" ~/Library/LaunchAgents/com.local.claudestatusbar.plist
 ```
