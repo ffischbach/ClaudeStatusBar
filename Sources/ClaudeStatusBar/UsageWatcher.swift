@@ -22,7 +22,7 @@ final class UsageWatcher: ObservableObject {
         loadFromDisk()
         startWatching()
         Task { await fetchPlanUsage() }
-        quotaTimer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
+        quotaTimer = Timer.scheduledTimer(withTimeInterval: 300, repeats: true) { [weak self] _ in
             Task { await self?.fetchPlanUsage() }
         }
     }
