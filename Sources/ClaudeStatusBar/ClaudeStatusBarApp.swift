@@ -34,8 +34,8 @@ struct MenuBarLabel: View {
 
     var body: some View {
         HStack(spacing: 3) {
-            Image(systemName: "bolt.fill")
-                .font(.system(size: 9, weight: .bold))
+            Image(systemName: "sparkles")
+                .font(.system(size: 10, weight: .medium))
                 .foregroundStyle(isStale ? .gray.opacity(0.4) : color)
             Text(label)
                 .font(.system(size: 12, weight: .medium, design: .monospaced))
