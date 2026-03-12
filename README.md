@@ -43,9 +43,25 @@ swift build -c release
 
 **4. Auto-start on login (optional):**
 
+macOS LaunchAgents are small service definitions that start automatically on login. This step registers ClaudeStatusBar as a LaunchAgent so it runs in the menu bar without needing to start it manually.
+
+Copy the bundled LaunchAgent plist to the macOS system folder where login items are registered:
 ```bash
-launchctl load ~/Library/LaunchAgents/com.local.claudestatusbar.plist
-# To stop:
+cp com.local.claudestatusbar.plist ~/Library/LaunchAgents/
+```
+
+Replace the `YOUR_USERNAME` placeholder with your actual username:
+```bash
+sed -i '' "s/YOUR_USERNAME/$(whoami)/" ~/Library/LaunchAgents/com.local.claudestatusbar.plist
+```
+
+Register and start the LaunchAgent (if it was previously loaded, unload first):
+```bash
+launchctl unload ~/Library/LaunchAgents/com.local.claudestatusbar.plist 2>/dev/null; launchctl load ~/Library/LaunchAgents/com.local.claudestatusbar.plist
+```
+
+To unregister (stops auto-start and kills the running process):
+```bash
 launchctl unload ~/Library/LaunchAgents/com.local.claudestatusbar.plist
 ```
 
