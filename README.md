@@ -2,13 +2,9 @@
 
 A native macOS menu bar app showing your Claude Code plan usage in real time.
 
-```
-⚡ 42%   ← 5-hour rate limit utilization, color-coded green / yellow / red
-```
-
 Click the icon to see a popover with context window %, session cost, and model name.
 
-![img.png](preview.png)
+![preview](preview.png)
 
 ## Requirements
 
