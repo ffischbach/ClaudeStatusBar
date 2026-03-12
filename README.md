@@ -18,7 +18,15 @@ Click the icon to see a popover with context window %, session cost, and model n
 
 ## Setup
 
-**1. Register the hook** — add to `~/.claude/settings.json`:
+**1. Install the hook:**
+
+```bash
+mkdir -p ~/.claude/hooks
+cp hooks/stop_hook.sh ~/.claude/hooks/stop_hook.sh
+chmod +x ~/.claude/hooks/stop_hook.sh
+```
+
+**2. Register the hook** — add to `~/.claude/settings.json`:
 
 ```json
 {
@@ -29,7 +37,7 @@ Click the icon to see a popover with context window %, session cost, and model n
 }
 ```
 
-**2. Build and run:**
+**3. Build and run:**
 
 ```bash
 cd ~/ClaudeStatusBar
@@ -37,7 +45,7 @@ swift build -c release
 .build/release/ClaudeStatusBar
 ```
 
-**3. Auto-start on login (optional):**
+**4. Auto-start on login (optional):**
 
 ```bash
 launchctl load ~/Library/LaunchAgents/com.local.claudestatusbar.plist
