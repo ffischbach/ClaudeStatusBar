@@ -4,7 +4,7 @@ A native macOS menu bar app showing your Claude Code plan usage in real time.
 
 Click the icon to see a popover with context window %, session cost, and model name.
 
-![preview](preview.png)
+![preview](preview.jpg)
 
 ## Requirements
 
