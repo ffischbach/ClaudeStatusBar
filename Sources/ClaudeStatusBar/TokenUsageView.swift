@@ -29,6 +29,11 @@ private struct FilledView: View {
                         centerLabel: fiveHour.formattedPct,
                         ringLabel: "5-hour limit"
                     )
+                    if let resetTime = resetTime(fiveHour.resetsAt) {
+                        Text("Resets at \(resetTime)")
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                    }
                 } else {
                     RingView(
                         value: usage.usedPercent / 100,
@@ -102,6 +107,14 @@ private struct FilledView: View {
             .padding(.vertical, 10)
         }
         .frame(width: 260)
+    }
+
+    private func resetTime(_ iso: String?) -> String? {
+        guard let iso, !iso.isEmpty else { return nil }
+        let date = ResetFormatter.fractional.date(from: iso)
+                ?? ResetFormatter.standard.date(from: iso)
+        guard let date else { return nil }
+        return ResetFormatter.output.string(from: date)
     }
 
     private func relativeTime(from date: Date?) -> String {
@@ -182,6 +195,20 @@ private struct UsageBar: View {
 }
 
 // MARK: - Helpers
+
+private enum ResetFormatter {
+    static let standard = ISO8601DateFormatter()
+    static let fractional: ISO8601DateFormatter = {
+        let f = ISO8601DateFormatter()
+        f.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        return f
+    }()
+    static let output: DateFormatter = {
+        let df = DateFormatter()
+        df.setLocalizedDateFormatFromTemplate("jmm")
+        return df
+    }()
+}
 
 private func statusColor(_ pct: Double) -> Color {
     switch pct {
