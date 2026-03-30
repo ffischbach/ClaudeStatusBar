@@ -12,7 +12,33 @@ Click the icon to see a popover with context window %, session cost, and model n
 - Swift 5.9+
 - `jq` — `brew install jq`
 
-## Setup
+## Installation
+
+Clone the repo and run the install script:
+
+```bash
+git clone https://github.com/ffischbach/ClaudeStatusBar.git ~/ClaudeStatusBar
+cd ~/ClaudeStatusBar
+./install.sh
+```
+
+The script will:
+1. Copy the hook to `~/.claude/hooks/stop_hook.sh`
+2. Register the `statusLine` hook in `~/.claude/settings.json`
+3. Build the binary (`swift build -c release`)
+4. Install and start a LaunchAgent so the app runs automatically on login
+
+To uninstall:
+
+```bash
+./uninstall.sh
+```
+
+This removes the LaunchAgent, the hook, and the `statusLine` entry from `settings.json`. The `.build/` directory is left in place.
+
+## Manual setup
+
+If you prefer to install step by step:
 
 **1. Install the hook:**
 
